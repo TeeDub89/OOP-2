@@ -34,7 +34,7 @@ public class Window extends JFrame {
         // Set the title, size, and other properties of the window
         setTitle("Hi Sean");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 550, 330);
+        setBounds(100, 100, 450, 330);
         setVisible(true);
         setResizable(false);
         
@@ -93,6 +93,9 @@ public class Window extends JFrame {
                 }
                 // if the input is valid, check the guess
                 hintManager.checkGuess(txtGuess1, txtGuess2, txtGuess3, txtHint, btnOK);
+                txtGuess1.setText("");
+                txtGuess2.setText("");
+                txtGuess3.setText("");
             }
         });
         // create reset button and add action listener to reset the game

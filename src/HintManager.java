@@ -99,7 +99,7 @@ public class HintManager {
      */
     private String generateHint(int fermiCount, int picoCount, int nanoCount, String input1, String input2, String input3) {
         StringBuilder hint = new StringBuilder();
-        hint.append("Guess: ").append(input1).append(" ").append(input2).append(" ").append(input3).append(": ");
+        hint.append(input1).append(" ").append(input2).append(" ").append(input3).append(": ");
         for (int i = 0; i < fermiCount; i++) {
             hint.append("Fermi ");
         }
