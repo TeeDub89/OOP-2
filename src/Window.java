@@ -1,11 +1,13 @@
 import javax.swing.*;
 import javax.swing.border.*;
-// import java.awt.*;
 import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 
-
-
+/**
+ * The Window class represents the main window of the Fermi guessing game.
+ * It extends the JFrame class and contains various components such as labels,
+ * text fields, buttons, and a text area.
+ */
 public class Window extends JFrame {
 
     // declare variables
@@ -22,8 +24,11 @@ public class Window extends JFrame {
     private TextFieldValidator validator2;
     private TextFieldValidator validator3;
 
-
-
+    /**
+     * Constructs a new Window object with the specified HintManager.
+     * 
+     * @param hintManager the HintManager object used to manage hints and check guesses
+     */
     public Window(HintManager hintManager) {
 
         // Set the title, size, and other properties of the window
@@ -32,6 +37,7 @@ public class Window extends JFrame {
         setBounds(100, 100, 550, 330);
         setVisible(true);
         setResizable(false);
+        
         // Create the main panel
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(new EmptyBorder(0, 5, 5, 5));
@@ -59,10 +65,8 @@ public class Window extends JFrame {
         validator3 = new TextFieldValidator(txtGuess3);
         validator3.setRegExp("^[0-9]$");
 
-
         // create output panel
         JPanel pnlHint = new JPanel();
-        
 
         // create text area
         txtHint = new JTextArea(16, 40);
@@ -129,17 +133,16 @@ public class Window extends JFrame {
         pnlHint.setLayout(new MigLayout("", "[]", "[][][]"));
         pnlHint.add(lblHint, "cell 0 1");
         pnlHint.add(pnlScroll, "cell 0 2, alignx center");
-
-
-
     }
 
-    // main method
+    /**
+     * The main method creates a new HintManager and Window object, and makes the window visible.
+     * It also generates a random number for the HintManager.
+     */
     public static void main(String[] args) {
         HintManager hintManager = new HintManager();
         Window window = new Window(hintManager);
         window.setVisible(true);
         hintManager.numGen();
-        };
-    
+    }
 }

@@ -6,11 +6,17 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * The HintManager class is responsible for generating hints and checking user guesses in a number guessing game.
+ */
 public class HintManager {
     
     private String targetNum;
     private int guessCount;
     
+    /**
+     * Generates a random 3-digit number and sets it as the target number.
+     */
     public void numGen() {
         // generate a random 3 digit number
         Random rand = new Random();
@@ -27,7 +33,15 @@ public class HintManager {
         }
         System.out.println(targetNum);
     }
-    // check the user's guess
+    
+    /**
+     * Checks the user's guess and updates the hint text area accordingly.
+     * @param txtGuess1 The JTextField for the first digit of the guess.
+     * @param txtGuess2 The JTextField for the second digit of the guess.
+     * @param txtGuess3 The JTextField for the third digit of the guess.
+     * @param txtHint The JTextArea to display the hint.
+     * @param btnOK The JButton to disable if the user wins.
+     */
     public void checkGuess(JTextField txtGuess1, JTextField txtGuess2, JTextField txtGuess3, JTextArea txtHint, JButton btnOK) {
         guessCount++;
         // get the user's guess
@@ -72,7 +86,17 @@ public class HintManager {
         txtHint.append(hint.toString().trim());
         txtHint.append("\n");
     }
-    // generate the hint based on the user's guess
+    
+    /**
+     * Generates a hint based on the user's guess.
+     * @param fermiCount The number of correct digits in the correct position (Fermi count).
+     * @param picoCount The number of correct digits in the wrong position (Pico count).
+     * @param nanoCount The number of incorrect digits (Nano count).
+     * @param input1 The first digit of the user's guess.
+     * @param input2 The second digit of the user's guess.
+     * @param input3 The third digit of the user's guess.
+     * @return The generated hint as a string.
+     */
     private String generateHint(int fermiCount, int picoCount, int nanoCount, String input1, String input2, String input3) {
         StringBuilder hint = new StringBuilder();
         hint.append("Guess: ").append(input1).append(" ").append(input2).append(" ").append(input3).append(": ");
@@ -87,12 +111,11 @@ public class HintManager {
         }
         return hint.toString();
     }
-
     
+    /**
+     * Resets the guess count to 0.
+     */
     public void resetGuessCount() {
         guessCount = 0;
     }
-
-
-
 }
