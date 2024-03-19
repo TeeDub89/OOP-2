@@ -21,15 +21,11 @@ public class HintManager {
             numbers.add(rand.nextInt(10));
         }
         targetNum = "";
-        // convert the set to a string
+        // convert the set to a string to get the target number
         for (Integer num : numbers) {
             targetNum += Integer.toString(num);
         }
         System.out.println(targetNum);
-    }
-    // return the target number as a char array
-    public char[] target() {
-        return targetNum.toCharArray();
     }
     // check the user's guess
     public void checkGuess(JTextField txtGuess1, JTextField txtGuess2, JTextField txtGuess3, JTextArea txtHint, JButton btnOK) {
@@ -42,27 +38,24 @@ public class HintManager {
         int fermiCount = 0;
         int picoCount = 0;
         int nanoCount = 0;
-        // check if the user's guess is correct by comparing each input to an element of the char array
-        if (input1.equals(targetNum.substring(0, 1))) {
-            fermiCount++;
-        } else if (targetNum.indexOf(input1) != -1) {
-            picoCount++;
-        } else {
-            nanoCount++;
-        }
-        if (input2.equals(targetNum.substring(1, 2))) {
-            fermiCount++;
-        } else if (targetNum.indexOf(input2) != -1) {
-            picoCount++;
-        } else {
-            nanoCount++;
-        }
-        if (input3.equals(targetNum.substring(2, 3))) {
-            fermiCount++;
-        } else if (targetNum.indexOf(input3) != -1) {
-            picoCount++;
-        } else {
-            nanoCount++;
+        // compare the user's guess to the target number by breaking it into substrings and checking each digit
+        for (int i = 0; i < 3; i++) {
+            String input = "";
+            if (i == 0) {
+                input = input1;
+            } else if (i == 1) {
+                input = input2;
+            } else if (i == 2) {
+                input = input3;
+            }
+            
+            if (input.equals(targetNum.substring(i, i + 1))) {
+                fermiCount++;
+            } else if (targetNum.indexOf(input) != -1) {
+                picoCount++;
+            } else {
+                nanoCount++;
+            }
         }
         // win condition
         String hint = generateHint(fermiCount, picoCount, nanoCount, input1, input2, input3);
