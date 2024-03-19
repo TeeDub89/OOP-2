@@ -8,7 +8,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class Window extends JFrame {
 
-
+    // declare variables
     private JLabel lblHint;
     private JLabel lblGuess;
     private JLabel lblTitle;
@@ -21,7 +21,6 @@ public class Window extends JFrame {
     private TextFieldValidator validator1;
     private TextFieldValidator validator2;
     private TextFieldValidator validator3;
-
 
 
 
@@ -81,18 +80,18 @@ public class Window extends JFrame {
         btnOK = new JButton("OK");
         btnOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // check if the input is valid
                 boolean isValid1 = validator1.check();
                 boolean isValid2 = validator2.check();
                 boolean isValid3 = validator3.check();
                 if (!isValid1 || !isValid2 || !isValid3) {
                     return;
                 }
+                // if the input is valid, check the guess
                 hintManager.checkGuess(txtGuess1, txtGuess2, txtGuess3, txtHint, btnOK);
             }
         });
-
-
-
+        // create reset button and add action listener to reset the game
         btnReset = new JButton("Reset");
         btnReset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -135,6 +134,7 @@ public class Window extends JFrame {
 
     }
 
+    // main method
     public static void main(String[] args) {
         HintManager hintManager = new HintManager();
         Window window = new Window(hintManager);
